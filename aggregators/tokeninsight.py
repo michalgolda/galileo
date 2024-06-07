@@ -57,7 +57,7 @@ class TokenInsightAggregator(Aggregator):
         token_economics_score = self._exclude_score(data['token_economics'])
         roadmap_progress_score = self._exclude_score(data['roadmap_progress'])
 
-        return TokenInsightRating(
+        result = TokenInsightRating(
             tid,
             rating_level,
             rating_score,
@@ -68,3 +68,5 @@ class TokenInsightAggregator(Aggregator):
             token_economics_score,
             roadmap_progress_score
         )
+
+        return result
