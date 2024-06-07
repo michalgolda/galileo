@@ -70,3 +70,14 @@ class TokenInsightAggregator(Aggregator):
         )
 
         return result
+
+    def getTopCoins(self, limit: int = 10) -> list[str]:
+        coins_list_endpoint = f"/coins/list?limit={limit}"
+        response = self._send_authenticated_request(coins_list_endpoint, RequestMethod.GET)
+        serialized_response = response.json()
+
+
+        data = serialized_response['data']['items']
+        result = list(map(lambda coin: coin['id'], data))
+
+        return result
